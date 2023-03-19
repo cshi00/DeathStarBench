@@ -67,6 +67,7 @@ function _M.ReadHomeTimeline()
 
   ngx.req.read_body()
   local args = ngx.req.get_uri_args()
+  span:set_tag("body", ngx.req.get_body_data())
 
   if (_StrIsEmpty(args.user_id) or _StrIsEmpty(args.start) or _StrIsEmpty(args.stop)) then
     ngx.status = ngx.HTTP_BAD_REQUEST

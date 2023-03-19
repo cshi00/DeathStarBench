@@ -44,6 +44,7 @@ function _M.ComposePost()
       { ["references"] = { { "child_of", parent_span_context } } })
   local carrier = {}
   tracer:text_map_inject(span:context(), carrier)
+  span:set_tag("body", ngx.req.get_body_data())
 
   if (not _StrIsEmpty(post.media_ids) and not _StrIsEmpty(post.media_types)) then
     status, ret = pcall(client.ComposePost, client,

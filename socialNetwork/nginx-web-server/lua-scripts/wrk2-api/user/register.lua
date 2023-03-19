@@ -26,6 +26,7 @@ function _M.RegisterUser()
 
   ngx.req.read_body()
   local post = ngx.req.get_post_args()
+  span:set_tag("body", ngx.req.get_body_data())
 
   if (_StrIsEmpty(post.first_name) or _StrIsEmpty(post.last_name) or
       _StrIsEmpty(post.username) or _StrIsEmpty(post.password) or

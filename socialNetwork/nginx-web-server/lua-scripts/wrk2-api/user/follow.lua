@@ -26,6 +26,7 @@ function _M.Follow()
 
   ngx.req.read_body()
   local post = ngx.req.get_post_args()
+  span:set_tag("body", ngx.req.get_body_data())
 
   local client = GenericObjectPool:connection(
       SocialGraphServiceClient, "social-graph-service" .. k8s_suffix, 9090)
